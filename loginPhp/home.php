@@ -43,7 +43,11 @@ include "include/header.php"
     <div class="container">
       <div class="row">
           <div class="col-xs-2">
+<<<<<<< HEAD
               <img src="img/pro.png" class="hero-img">
+=======
+              <img src="pro.png" class="hero-img">
+>>>>>>> 2f759cb67423c0a61cb603a841f6b82293c992c4
           </div>
   
           <div class="col-xs-6">
@@ -57,7 +61,11 @@ include "include/header.php"
   <div class="container">
     <div class="row">
         <div class="col-xs-6 text-info">
+<<<<<<< HEAD
             <img src="img/cyb.png" width="550px" class="hero">
+=======
+            <img src="cyb.png" width="550px" class="hero">
+>>>>>>> 2f759cb67423c0a61cb603a841f6b82293c992c4
             <h3>CYBERSECURITY</h3>
             Our services range from strategic advisory to designing and creating <br> cybersecurity policy, standard, and protocol implementation.​
              <h3>AIT IT Solutions and Cybersecurity <br>Consuletency PLC is Certified web and <br>mobile application development<br>, and Digital Marketing<br> company based in Addis Ababa, Ethiopia. </h3>
@@ -65,9 +73,15 @@ include "include/header.php"
         
         </div>
         </div>
+<<<<<<< HEAD
         
 <?php
 include "include/footer.php" 
+=======
+      
+<?php
+include "footer.php"
+>>>>>>> 2f759cb67423c0a61cb603a841f6b82293c992c4
 ?>
 </body>
 </html>
