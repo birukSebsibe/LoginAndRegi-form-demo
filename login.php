@@ -102,7 +102,7 @@
                   <p class="small fw-bold mt-2 pt-1 mb-0">
                     Ooops i dont have an account! 😟
                     <a
-                      href="#!"
+                      href="register.php"
                       class="link-danger"
                       style="text-decoration: none"
                       >Register</a

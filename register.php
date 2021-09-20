@@ -5,6 +5,7 @@
     
 
     <title>Registeration</title>
+    <?php include('./header.php')?>
     <!-- betty -->
   </head>
   <body
@@ -87,7 +88,7 @@
       <br />
 
       <a
-        href="login.html"
+        href="login.php"
         class="link-info fw-bold mb-3"
         style="text-decoration: none"
         >I have an account!
