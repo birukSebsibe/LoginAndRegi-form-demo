@@ -45,6 +45,9 @@
               <li class="nav-item">
                 <a class="nav-link text-info" href="#">About</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active text-info" aria-current="page" href="login.php">sign out</a>
+              </li>
             </ul>
             
           </div>

@@ -4,7 +4,30 @@
    
 
     <title>AIT Login</title>
-    <?php include('./header.php')?>
+    <?php
+    session_start();
+     include('./header.php');
+     if(isset($_POST['username'])){
+      $uname=$_POST['username']; 
+      $password=$_POST['password'];
+      $sql="select * from login where USER='$uname' AND PASS='$password' limit 1";
+      $result=mysqli_query($con,$sql);
+      if(mysqli_num_rows($result)==1
+      ){
+        echo " successfully loged in";
+        $_SESSION['user_id'] = $user_data['user_id'];
+						header("Location: home.php");
+						die;
+        exit();
+      }
+      else{
+        echo "try again";
+        exit();
+      }
+    }
+ 
+
+     ?>
   </head>
   <body>
     <body>
@@ -27,7 +50,7 @@
               />
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4">
-              <form>
+              <form method="post" >
                 <h3 class="mb-4 text-secondary">
                   Hello Friend, looks like you have been away, join us and let's
                   be friends!
@@ -50,15 +73,16 @@
                 </div>
 
                 <!-- Email input -->
-                <div class="form-outline mb-2">
+                <div class="form-input mb-2">
                   <label class="form-label" for="form3Example3"
-                    >Email address</label
+                    >user name</label
                   >
                   <input
-                    type="email"
-                    id="form3Example3"
+                    type="text"
+                    name="username"
+                   
                     class="form-control form-control-lg rounded-pill"
-                    placeholder="Enter a valid email address"
+                    placeholder="Enter username"
                   />
                 </div>
 
@@ -67,7 +91,8 @@
                   <label class="form-label" for="form3Example4">Password</label>
                   <input
                     type="password"
-                    id="form3Example4"
+                    name="password"
+                   
                     class="form-control form-control-lg rounded-pill"
                     placeholder="Enter password"
                   />
@@ -92,13 +117,15 @@
                 </div>
 
                 <div class="text-center text-lg-start mt-4 pt-2 mb-5">
-                  <button
-                    type="button"
+                  <input
+                    type="submit"
+                    
+                    value="login"
                     class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem"
-                  >
-                    Login
-                  </button>
+                  />
+                  
+
                   <p class="small fw-bold mt-2 pt-1 mb-0">
                     Ooops i dont have an account! 😟
                     <a
