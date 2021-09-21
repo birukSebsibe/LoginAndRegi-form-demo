@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<!-- My fist commit on  mike branch -->
+
 <html lang="en">
   <head>
     
 
     <title>Registeration</title>
-    <?php include('./header.php')?>
+    <?php 
+    include('./header.php');
+    include('./functions.php');
+
+    if($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+      
+      $user_name = $_POST['user_name'];
+      $password = $_POST['password'];
+      $firstname= $_POST['firstname'];
+      $lastname= $_POST['lastname'];
+      $email= $_POST['email'];
+      
+
+      
+      if(!empty($user_name) && !empty($firstname) && !empty($lastname) && !empty($password) && !is_numeric($user_name) && !is_numeric($firstname) && !is_numeric($lastname) )
+      {
+  
+        
+        $user_id = random_num(20);
+        $query = "insert into login (ID,USER,PASS,email,firstname,lastname) values ('$user_id','$user_name','$password,'$email','$firstname','$lastname')";
+  
+        mysqli_query($con, $query);
+  
+        header("Location: login.php");
+        die;
+      }
+      else
+      {
+        echo "Please enter some valid information!";
+      }
+    }
+    
+    ?>
     <!-- betty -->
   </head>
   <body
@@ -14,85 +47,89 @@
   
     <div class="container -md w-75 mt-4 justify-content-center">
       
-      <h3 class="text-primary">Registeration Form</h3>
-      <div class="input-group mb-3 w-50">
-      <div class="box border border danger rounded-pill"></div>
-        <span class="input-group-text bg-primary" id="basic-addon1"></span>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="first name"
-          aria-label="firstname"
-          aria-describedby="basic-addon1"
-        />
-      </div><div class="input-group mb-3 w-50">
-        <span class="input-group-text bg-info" id="basic-addon1"></span>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Last name"
-          aria-label="lastname"
-          aria-describedby="basic-addon1"
-        />
-      </div>
-      <div class="input-group mb-3 w-50">
-        <span class="input-group-text bg-info" id="basic-addon1"></span>
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Password"
-          aria-label="Password"
-          aria-describedby="basic-addon1"
-        />
-      </div>
+      <h3 class="text-info">Registeration Form</h3>
+      <form method="post">
+          <div class="input-group mb-3 w-50">
+            
+            <span class="input-group-text bg-info" id="basic-addon1"></span>
+            <input
+              type="text"
+              name="user_name"
+              class="form-control"
+              placeholder="username"
+              aria-label="username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-3 w-50">
+         
+            <span class="input-group-text bg-info" id="basic-addon1"></span>
+            <input
+              type="text"
+              name="firstname"
+              class="form-control"
+              placeholder="first name"
+              aria-label="firstname"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-3 w-50">
+            <span class="input-group-text bg-info" id="basic-addon1"></span>
+            <input
+              type="text"
+              name="lastname"
+              class="form-control"
+              placeholder="Last name"
+              aria-label="lastname"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-3 w-50">
+            <span class="input-group-text bg-info" id="basic-addon1"></span>
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+              aria-label="Password"
+              aria-describedby="basic-addon1"
+            />
+          </div>
 
-      <div class="input-group mb-3 w-50">
-        <span class="input-group-text bg-info" id="basic-addon12"></span>
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Comfrim Password"
-          aria-label="Password"
-          aria-describedby="basic-addon1"
-        />
-      </div>
-      <div class="input-group mb-3 w-50">
-        <span class="input-group-text bg-info" id="basic-addon13"></span>
-        <input
-          type="email"
-          class="form-control"
-          placeholder="Email@email.com"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
-       
-      
-      </div>
+          
+          <div class="input-group mb-3 w-50">
+            <span class="input-group-text bg-info" id="basic-addon13"></span>
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              placeholder="Email@email.com"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          
+          
+          </div>
 
-      <div class="input-group mb-3 w-50">
-        <span class="input-group-text bg-info" id="basic-addon14"></span>
-        <select
-          class="form-select form-select-sm w-50"
-          aria-label=".form-select-sm example"
-        >
-          <option selected>Select your Gender</option>
-          <option value="1">Male</option>
-          <option value="2">Female</option>
-        </select>
-      </div>
-      <br />
-      <button type="button" class="btn btn-outline-info w-50">
-        Register
-      </button>
+         
+          <br />
+          <input type="submit"
+                  value="register"
+                  class="btn btn-outline-info w-50"
+                  id="button"
+          />
+          
+          
 
-      <br />
+          <br />
 
-      <a
-        href="login.php"
-        class="link-info fw-bold mb-3"
-        style="text-decoration: none"
-        >I have an account!
-      </a>
+          <a
+            href="login.php"
+            class="link-info fw-bold mb-3"
+            style="text-decoration: none"
+            >I have an account!
+          </a>
+      </form>
     </div>
 
     <script
