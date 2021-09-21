@@ -9,6 +9,8 @@
     style="background-repeat: no-repeat; background-size: 100%" >
         <div class="container -md w-75 mt-4 justify-content-center"
          >
+         <img src="user.png" alt="" width="100" height="80" class="d-inline-block align-text-top navbar-brand text-info">
+         
             <div class="row">
                 <div class="col-md-6">
                     <h2> Login here </h2>
@@ -22,6 +24,8 @@
                             <input type="password" name="password" class="form-control" required>
                         </div>
                         <button ype="submit" class="btn btn-primary">Login</button>
+                        <p>Don't have an account? <a href="register.php">Sign up</a>.</p>
+            <a href="#" class="text-body mx-3 mx-3 mx-3" style="text-decoration: none">
 </form>
 </div>
 </div>
