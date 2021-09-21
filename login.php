@@ -8,8 +8,14 @@
     session_start();
      include('./header.php');
      if(isset($_POST['username'])){
-      $uname=$_POST['username']; 
+      $uname=$_POST['username'];
       $password=$_POST['password'];
+       $uname=stripcslashes($uname);
+       $password=stripcslashes($password);
+       
+      $uname=mysqli_real_escape_string($con,$uname); 
+    
+      $password=mysqli_real_escape_string($con,$password ) ;
       $sql="select * from login where USER='$uname' AND PASS='$password' limit 1";
       $result=mysqli_query($con,$sql);
       if(mysqli_num_rows($result)==1
