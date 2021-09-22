@@ -16,7 +16,7 @@
       $uname=mysqli_real_escape_string($con,$uname); 
     
       $password=mysqli_real_escape_string($con,$password ) ;
-      $sql="select * from login where USER='$uname' AND PASS='$password' limit 1";
+      $sql="select * from login where username='$uname' AND password='$password' limit 1";
       $result=mysqli_query($con,$sql);
       if(mysqli_num_rows($result)==1
       ){

@@ -6,16 +6,17 @@
 
     <title>Registeration</title>
     <?php 
+    session_start();
     include('./header.php');
     include('./functions.php');
 
-    if($_SERVER['REQUEST_METHOD'] == "POST")
+    if($_POST)
     {
       
       $user_name = $_POST['user_name'];
-      $password = $_POST['password'];
       $firstname= $_POST['firstname'];
       $lastname= $_POST['lastname'];
+      $password = $_POST['password'];
       $email= $_POST['email'];
       
 
@@ -25,7 +26,7 @@
   
         
         $user_id = random_num(20);
-        $query = "insert into login (id,username,firstname,lastname,password,email) values ('$user_id','$user_name','$firstname','$lastname','$password,'$email')";
+        $query = "insert into login (username,firstname,lastname,password,email) values ('$user_name','$firstname','$lastname','$password','$email')";
   
         mysqli_query($con, $query);
   

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2021 at 11:48 AM
+-- Generation Time: Sep 22, 2021 at 10:29 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `app1`
+-- Database: `app`
 --
 
 -- --------------------------------------------------------
@@ -29,24 +29,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `login` (
-  `ID` int(11) NOT NULL,
-  `USER` varchar(50) NOT NULL,
-  `PASS` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `id` int(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `firstname` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL
+  `lastname` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`ID`, `USER`, `PASS`, `email`, `firstname`, `lastname`) VALUES
-(1, 'admin', 'admin', 'admin@email.com', 'administrator', 'administrator'),
-(3287, 'bb', 'bbbb', 'bb@bb', 'bb', 'bb'),
-(3450, 'kk', '54321', 'kkk@email.com', 'kkk', 'kkk'),
-(4575, 'bee', '1234', 'bee@email.com', 'beee', 'beeee'),
-(9097354, 'ww', 'wwww', 'wwww@email.com', 'ww', 'ww');
+INSERT INTO `login` (`id`, `username`, `firstname`, `lastname`, `password`, `email`) VALUES
+(1, 'kim', 'jeong', 'un', '1234', 'kim@email.com'),
+(2, 'han', 'jin', 'sue', '12345', 'han@email.com'),
+(3, 'jin', 'seong', 'min', '12345', 'jin@email.com'),
+(4, 'nam', 'jo', 'hyeok', '12345', 'nam@jo');
 
 --
 -- Indexes for dumped tables
@@ -56,7 +55,7 @@ INSERT INTO `login` (`ID`, `USER`, `PASS`, `email`, `firstname`, `lastname`) VAL
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -66,7 +65,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2147483648;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

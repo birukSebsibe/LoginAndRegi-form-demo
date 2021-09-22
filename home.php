@@ -47,7 +47,9 @@
                 <a class="nav-link active text-info" aria-current="page" href="logout.php">sign out</a>
               </li>
             </ul>
-            
+            <li class="nav-item">
+                <a class="nav-link active text-info" aria-current="page" href="logout.php">delete account</a>
+              </li>
           </div>
         </div>
       </nav>
