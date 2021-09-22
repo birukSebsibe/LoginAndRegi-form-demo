@@ -25,7 +25,7 @@
   
         
         $user_id = random_num(20);
-        $query = "insert into login (ID,USER,PASS,email,firstname,lastname) values ('$user_id','$user_name','$password,'$email','$firstname','$lastname')";
+        $query = "insert into login (id,username,firstname,lastname,password,email) values ('$user_id','$user_name','$firstname','$lastname','$password,'$email')";
   
         mysqli_query($con, $query);
   

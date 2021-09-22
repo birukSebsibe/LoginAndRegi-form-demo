@@ -17,7 +17,7 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "app1";
+$dbname = "app";
 mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 
 if(!$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
