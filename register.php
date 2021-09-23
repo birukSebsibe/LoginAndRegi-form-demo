@@ -1,143 +1,163 @@
-<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    
-
-    <title>Registeration</title>
-    <?php 
-    session_start();
-    include('./header.php');
-    include('./functions.php');
-
-    if($_POST)
-    {
-      
-      $user_name = $_POST['user_name'];
-      $firstname= $_POST['firstname'];
-      $lastname= $_POST['lastname'];
-      $password = $_POST['password'];
-      $email= $_POST['email'];
-      
-
-      
-      if(!empty($user_name) && !empty($firstname) && !empty($lastname) && !empty($password) && !is_numeric($user_name) && !is_numeric($firstname) && !is_numeric($lastname) )
-      {
-  
+<?php
+// Include config file
+require_once "header.php";
+ 
+// Define variables and initialize with empty values
+$username =$email= $password = $confirm_password = "";
+$username_err =$email_err= $password_err = $confirm_password_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Validate username
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Please enter a username.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM users WHERE username = ?";
         
-        $user_id = random_num(20);
-        $query = "insert into login (username,firstname,lastname,password,email) values ('$user_name','$firstname','$lastname','$password','$email')";
-  
-        mysqli_query($con, $query);
-  
-        header("Location: login.php");
-        die;
-      }
-      else
-      {
-        echo "Please enter some valid information!";
-      }
+        if($stmt = mysqli_prepare($con, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "s", $param_email);
+            
+            // Set parameters
+            $param_username = trim($_POST["username"]);
+            $param_email = trim($_POST["email"]);
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $username_err = "This username is already taken.";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
     }
     
-    ?>
-    <!-- betty -->
-  </head>
-  <body
-    background="./img.jpg"
-    style="background-repeat: no-repeat; background-size: 100%">
-  
-    <div class="container -md w-75 mt-4 justify-content-center">
-      
-      <h3 class="text-info">Registeration Form</h3>
-      <form method="post">
-          <div class="input-group mb-3 w-50">
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter a password.";     
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Password must have atleast 6 characters.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Please confirm password.";     
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Password did not match.";
+        }
+    }
+    
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($password_err)  && empty($confirm_password_err)){
+        
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (username,email,password) VALUES (?, ?, ?)";
+         
+        if($stmt = mysqli_prepare($con, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
             
-            <span class="input-group-text bg-info" id="basic-addon1"></span>
-            <input
-              type="text"
-              name="user_name"
-              class="form-control"
-              placeholder="username"
-              aria-label="username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-          <div class="input-group mb-3 w-50">
-         
-            <span class="input-group-text bg-info" id="basic-addon1"></span>
-            <input
-              type="text"
-              name="firstname"
-              class="form-control"
-              placeholder="first name"
-              aria-label="firstname"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-          <div class="input-group mb-3 w-50">
-            <span class="input-group-text bg-info" id="basic-addon1"></span>
-            <input
-              type="text"
-              name="lastname"
-              class="form-control"
-              placeholder="Last name"
-              aria-label="lastname"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-          <div class="input-group mb-3 w-50">
-            <span class="input-group-text bg-info" id="basic-addon1"></span>
-            <input
-              type="password"
-              name="password"
-              class="form-control"
-              placeholder="Password"
-              aria-label="Password"
-              aria-describedby="basic-addon1"
-            />
-          </div>
+            // Set parameters
+            
+            $param_username = $username;
+            $param_email= $email;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Redirect to login page
+                header("location: login.php");
+            } else{
+                echo "Something went wrong. Please try again later.";
+            }
 
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // Close connection
+    mysqli_close($con);
+}
+?>
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AIT Sign Up page </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 350px; padding: 20px; }
+       
+        .my-center{
+        margin: 0 auto;
+        width: 300px;
+      }
+
+    </style>
+</head>
+<body>
+<div class=" my-center">
+        <h3 class="text-info"><img src="logo.png" width="90px"  > AIT techworld</h3>
+       
+ <div class="row">
           
-          <div class="input-group mb-3 w-50">
-            <span class="input-group-text bg-info" id="basic-addon13"></span>
-            <input
-              type="email"
-              name="email"
-              class="form-control"
-              placeholder="Email@email.com"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          
-          
-          </div>
-
-         
-          <br />
-          <input type="submit"
-                  value="register"
-                  class="btn btn-outline-info w-50"
-                  id="button"
-          />
-          
-          
-
-          <br />
-
-          <a
-            href="login.php"
-            class="link-info fw-bold mb-3"
-            style="text-decoration: none"
-            >I have an account!
-          </a>
-      </form>
-    </div>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-      crossorigin="anonymous"
-    ></script>
-
-  </body>
+        <div class=" my-center"> 
+        <img
+          src="./imge.svg"
+          width="350px"
+          class="img-fluid mt-4 mb-3 "
+          alt="login illustration fron undraw"
+        /> 
+         <div class="wrapper text-info md-4">
+        <h2>Sign Up page</h2>
+        <p>Please fill this form to create an account.</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control" value="<?php echo $username; ?>">
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>   
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+        </form>
+    </div>    
+</div>
+</body>
 </html>
