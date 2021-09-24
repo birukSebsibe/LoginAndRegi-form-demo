@@ -1,5 +1,11 @@
 <?php
 // BARACK php code login page commit
+<<<<<<< yo-branch
+require_once "server/config.php";
+require_once "server/s.php";
+?>
+
+=======
 require_once "config.php";
 $username = $password = "";
 $username_err = $password_err = "";
@@ -46,18 +52,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
  
+>>>>>>> main
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<<<<<<< yo-branch
+    <title>AIT Login page</title>
+=======
     <title>Login</title>
+>>>>>>> main
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
+<<<<<<< yo-branch
+    .wrapper{ width: 350px; padding: 20px; }
+    .my-center{
+=======
         .wrapper{ width: 350px; padding: 20px; }
     
       .my-center{
+>>>>>>> main
         margin: 0 auto;
         width: 300px;
       }
@@ -76,7 +92,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           alt="login illustration fron undraw"
         />
       <br>
+<<<<<<< yo-branch
+        <form action="server/s.php" method="post">
+=======
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+>>>>>>> main
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" placeholder="User name" aria-label="First name" class="form-control " value="<?php echo $username; ?>">
@@ -88,9 +108,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
+<<<<<<< yo-branch
+                <input type="submit" name="login"  class="btn btn-info w-150 my-center"  value="Login">
+            </div>
+            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+=======
                 <input type="submit" class="btn btn-info w-150 my-center"  value="Login">
             </div>
             <p>Don't have an account? <a href="#">Sign up now</a>.</p>
+>>>>>>> main
           <a href="#" class="text-body mx-3 mx-3 mx-3" style="text-decoration: none"
                     >   Forgot password? 😳</a>
         </form>
