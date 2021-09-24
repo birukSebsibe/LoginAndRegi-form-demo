@@ -1,5 +1,11 @@
 <?php
 // BARACK php code login page commit
+<<<<<<< BK_demo_branch
+require_once "config.php";
+require "s.php";
+?>
+
+=======
 <<<<<<< yo-branch
 require_once "server/config.php";
 require_once "server/s.php";
@@ -53,19 +59,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
  
 >>>>>>> main
+>>>>>>> main
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<<<<<<< BK_demo_branch
+    <title>AIT Login page</title>
+=======
 <<<<<<< yo-branch
     <title>AIT Login page</title>
 =======
     <title>Login</title>
 >>>>>>> main
+>>>>>>> main
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
+<<<<<<< BK_demo_branch
+    .wrapper{ width: 350px; padding: 20px; }
+    .my-center{
+=======
 <<<<<<< yo-branch
     .wrapper{ width: 350px; padding: 20px; }
     .my-center{
@@ -73,6 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         .wrapper{ width: 350px; padding: 20px; }
     
       .my-center{
+>>>>>>> main
 >>>>>>> main
         margin: 0 auto;
         width: 300px;
@@ -92,10 +108,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           alt="login illustration fron undraw"
         />
       <br>
+<<<<<<< BK_demo_branch
+        <form action="s.php" method="post">
+=======
 <<<<<<< yo-branch
         <form action="server/s.php" method="post">
 =======
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+>>>>>>> main
 >>>>>>> main
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
@@ -108,6 +128,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
+<<<<<<< BK_demo_branch
+                <input type="submit"  class="btn btn-info w-150 my-center"  value="Login">
+            </div>
+            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+=======
 <<<<<<< yo-branch
                 <input type="submit" name="login"  class="btn btn-info w-150 my-center"  value="Login">
             </div>
@@ -116,6 +141,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-info w-150 my-center"  value="Login">
             </div>
             <p>Don't have an account? <a href="#">Sign up now</a>.</p>
+>>>>>>> main
 >>>>>>> main
           <a href="#" class="text-body mx-3 mx-3 mx-3" style="text-decoration: none"
                     >   Forgot password? 😳</a>
