@@ -112,7 +112,7 @@ body{
     </div>
     <div class="team_member col-md-9 col-lg-6 col-xl-5">
       <div class="team_img">
-        <img src=".\fp.png" alt="Team_image">
+        <img src="\images\fp.png" alt="Team_image">
       </div>
       <h3 class="text-info">Yordanos Tsegaw</h3>
       <p class="role">Tester</p>

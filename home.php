@@ -5,8 +5,10 @@
 <title>Document</title>
 <?php
     session_start();
-     include('./header.php');
+     include('./connection.php');
      include('./header1.php');
+     include('./footer.php');
+
      ?>
 </head>
 <body>
