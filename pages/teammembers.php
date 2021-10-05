@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Our Team Section</title>
+	<title>Our Team</title>
 	<?php
- require_once "header.php";
+ require_once "C:\bee xammp\htdocs\LoginAndRegi-form-demo\connection.php";
  
- require_once "header1.php";
+ require_once "C:\bee xammp\htdocs\LoginAndRegi-form-demo\includes\header1.php";
   ?>
 </head>
 <style>
@@ -90,7 +90,7 @@ body{
   <div class="team" class=" container-fluid h-custom ">
     <div class="team_member col-md-9 col-lg-6 col-xl-5">
       <div class="team_img">
-        <img src=".\mp.png " alt="Team_image">
+        <img src="\LoginAndRegi-form-demo\images\mp.png " alt="Team_image">
       </div class="  bg-info ">
       <h3 class="text-info">Biruk Sebsibe </h3>
       <p class="role">programmer</p>
@@ -112,7 +112,7 @@ body{
     </div>
     <div class="team_member col-md-9 col-lg-6 col-xl-5">
       <div class="team_img">
-        <img src="\images\fp.png" alt="Team_image">
+        <img src="\LoginAndRegi-form-demo\images\fp.png" alt="Team_image">
       </div>
       <h3 class="text-info">Yordanos Tsegaw</h3>
       <p class="role">Tester</p>
@@ -132,7 +132,7 @@ body{
       <p></p></div>
     <div class="team_member col-md-9 col-lg-6 col-xl-5">
       <div class="team_img">
-        <img src=".\142894585-laptop-female-icon-girl-at-the-computer-flat-style-design.jpg" alt="Team_image">
+        <img src="\LoginAndRegi-form-demo\images\142894585-laptop-female-icon-girl-at-the-computer-flat-style-design.jpg" alt="Team_image">
       </div>
       <h3 class="text-info">Bethelhem Dereje</h3>
       <p class="role">project manager</p>
@@ -141,9 +141,10 @@ body{
       <i class="bi-twitter" style="font-size: 1.5rem"></i>
       </button>
       
-      <a type="button" class="btn btn-floating mb-1" herf="">
-      <i class="bi-facebook " style="font-size: 1.5rem" ></i>
-</a>
+      <button type="button" class="btn btn-floating mb-1" herf="#">
+      <i class="bi-facebook " style="font-size: 1.5rem"></i>
+      </button>
+      
       
       <button type="button" class="btn btn-floating mb-1" herf="#">
       <i class="bi-telegram " style="font-size: 1.5rem"></i>
@@ -157,6 +158,6 @@ body{
 </body>
 <?php
 
-include('./footer.php');
+include('C:\bee xammp\htdocs\LoginAndRegi-form-demo\includes\footer.php');
 ?>
 </html>

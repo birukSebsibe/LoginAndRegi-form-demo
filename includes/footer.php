@@ -1,7 +1,7 @@
 <style>
     footer {
   display: block;
-  margin-bottom: auto;
+  margin-bottom:auto ;
   background-color: rgb(103, 250, 248);
   margin-left: 0px;
   margin-top: 20px;
